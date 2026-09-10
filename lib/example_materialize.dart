@@ -40,17 +40,14 @@ import 'package:flutter/material.dart' hide Material;
 import 'package:flutter_scene/scene.dart';
 import 'package:vector_math/vector_math.dart' as vm;
 
-import 'environment_menu.dart' show EnvironmentSelector, fetchResource;
+import 'environment_menu.dart' show EnvironmentSelector;
 import 'example_overlay.dart';
 import 'example_panel.dart';
 import 'example_settings.dart';
 import 'lighting_panel.dart';
 import 'materialize_settings.dart';
 
-const String _kHelmetUrl =
-    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/'
-    'main/Models/DamagedHelmet/glTF-Binary/DamagedHelmet.glb';
-const int _kHelmetSizeBytes = 3773916;
+const String _kHelmetAsset = 'assets/DamagedHelmet.glb';
 
 // Sweep overshoot below/above the model so every fade band fully clears.
 const double _kSweepPad = 0.15;
@@ -69,7 +66,6 @@ class _ExampleMaterializeState extends State<ExampleMaterialize> {
 
   bool _ready = false;
   Object? _error;
-  int _downloaded = 0;
 
   // One shell material per imported primitive (each carries that primitive's
   // textures), and one wire/glass pass per mesh node (each carries that
@@ -101,15 +97,7 @@ class _ExampleMaterializeState extends State<ExampleMaterialize> {
 
   Future<void> _load() async {
     try {
-      final bytes = await fetchResource(
-        _kHelmetUrl,
-        expectedSize: _kHelmetSizeBytes,
-        onChunk: (chunk) {
-          if (!mounted) return;
-          setState(() => _downloaded += chunk);
-        },
-      );
-      final helmet = await Node.fromGlbBytes(bytes);
+      final helmet = await Node.fromGlbAsset(_kHelmetAsset);
       if (!mounted) return;
 
       final meshNodes = helmet.meshNodes.toList();
@@ -348,26 +336,21 @@ class _ExampleMaterializeState extends State<ExampleMaterialize> {
       );
     }
     if (!_ready) {
-      final fraction = (_downloaded / _kHelmetSizeBytes)
-          .clamp(0.0, 1.0)
-          .toDouble();
-      return ExampleStatusCard(
+      return const ExampleStatusCard(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
               width: 240,
               child: LinearProgressIndicator(
-                value: fraction,
                 color: Colors.deepPurpleAccent,
                 backgroundColor: Colors.white24,
               ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             Text(
-              'Downloading DamagedHelmet '
-              '(${(_downloaded / (1024 * 1024)).toStringAsFixed(1)} MB)',
-              style: const TextStyle(color: Colors.white70),
+              'Loading DamagedHelmet…',
+              style: TextStyle(color: Colors.white70),
               textAlign: TextAlign.center,
             ),
           ],
@@ -398,7 +381,7 @@ class _ExampleMaterializeState extends State<ExampleMaterialize> {
           child: LightingPanel(
             scene: scene,
             selector: _environmentSelector,
-            initialEnvironmentId: 'helipad',
+            initialEnvironmentId: 'studio',
             initialSkyBlur: 0.33,
             initialExposure: 2.03,
             initialIblIntensity: 1.36,

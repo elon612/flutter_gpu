@@ -64,6 +64,7 @@ flutter:
     - flutter_scene_generated/
     # Runtime IBL for the Car example (not cooked by the build hook).
     - assets/little_paris_eiffel_tower.png
+    - assets/DamagedHelmet.glb
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
