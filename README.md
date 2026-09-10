@@ -2,7 +2,7 @@
 
 用 [flutter_scene](https://pub.dev/packages/flutter_scene) 官方示例里最炫的几个场景，做成可在浏览器里跑的 Web 展示。
 
-默认打开的是官网首页同款 **Materialize**：Khronos `DamagedHelmet` 从线框 → 玻璃碎片飞入 → PBR 实体，分三层扫过模型。
+默认打开的是官网首页同款 **Materialize**：Khronos `DamagedHelmet` 从线框 → 玻璃碎片飞入 → PBR 实体，分三层扫过模型。头盔 glTF 已打进 `assets/`，开页即可播；Lighting 面板仍可换成 Helipad 等 HDR。
 
 另外两个可选场景：
 
