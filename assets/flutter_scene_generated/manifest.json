@@ -1,0 +1,80 @@
+{
+  "schema": 3,
+  "package": "flutter_scene_showcase",
+  "entries": [
+    {
+      "family": "scene",
+      "id": "assets_src/fcar",
+      "file": "scene.fcar.03a36066.fsceneb",
+      "stamp": "419c4aa373c069db",
+      "source": "assets_src/fcar.glb"
+    },
+    {
+      "family": "scene",
+      "id": "assets_src/flutter_logo_baked",
+      "file": "scene.flutter_logo_baked.d4e348f9.fsceneb",
+      "stamp": "ae715e4ab9e94ec6",
+      "source": "assets_src/flutter_logo_baked.glb"
+    },
+    {
+      "family": "material",
+      "id": "materials",
+      "file": "material.materials.f645bfd4.index.json",
+      "stamp": "bcac04d4e95f1a67",
+      "target": "openglEs"
+    },
+    {
+      "family": "material",
+      "id": "materials#shaderbundle",
+      "file": "material.materials.f645bfd4.shaderbundle",
+      "stamp": "bcac04d4e95f1a67",
+      "target": "openglEs"
+    },
+    {
+      "family": "material",
+      "id": "materials#sidecar",
+      "file": "material.materials.f645bfd4.fmat.json",
+      "stamp": "bcac04d4e95f1a67",
+      "target": "openglEs"
+    },
+    {
+      "family": "material",
+      "id": "physical",
+      "owner": "flutter_scene",
+      "file": "material.physical.dada46d7.index.json",
+      "stamp": "003a6023bd975557",
+      "target": "openglEs"
+    },
+    {
+      "family": "material",
+      "id": "physical#shaderbundle",
+      "owner": "flutter_scene",
+      "file": "material.physical.dada46d7.shaderbundle",
+      "stamp": "003a6023bd975557",
+      "target": "openglEs"
+    },
+    {
+      "family": "material",
+      "id": "physical#sidecar",
+      "owner": "flutter_scene",
+      "file": "material.physical.dada46d7.fmat.json",
+      "stamp": "003a6023bd975557",
+      "target": "openglEs"
+    },
+    {
+      "family": "texture",
+      "id": "assets/ground_grid",
+      "file": "texture.ground_grid.000e524f.fstex",
+      "stamp": "3e409910300b9684",
+      "source": "assets/ground_grid.png"
+    },
+    {
+      "family": "shaderBundle",
+      "id": "base",
+      "owner": "flutter_scene",
+      "file": "shaderbundle.base.73929c09.shaderbundle",
+      "stamp": "b857f2853c147bb5",
+      "target": "openglEs"
+    }
+  ]
+}

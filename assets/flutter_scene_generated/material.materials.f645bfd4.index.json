@@ -1,0 +1,21 @@
+{
+  "schema": 2,
+  "package": "flutter_scene_showcase",
+  "bundleName": "materials",
+  "shaderBundleFileName": "material.materials.f645bfd4.shaderbundle",
+  "sidecarFileName": "material.materials.f645bfd4.fmat.json",
+  "materials": {
+    "MaterializeGlass": {
+      "entryName": "MaterializeGlass",
+      "source": "assets/materialize_glass.fmat"
+    },
+    "MaterializeShell": {
+      "entryName": "MaterializeShell",
+      "source": "assets/materialize_shell.fmat"
+    },
+    "MaterializeWireframe": {
+      "entryName": "MaterializeWireframe",
+      "source": "assets/materialize_wireframe.fmat"
+    }
+  }
+}

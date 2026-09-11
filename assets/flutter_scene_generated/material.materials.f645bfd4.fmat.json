@@ -1,0 +1,388 @@
+{
+  "MaterializeGlass": {
+    "name": "MaterializeGlass",
+    "framework_varying_schema": 2,
+    "domain": "surface",
+    "shading_model": "lit",
+    "blending": "alpha",
+    "culling": "none",
+    "uniform_block": "MaterialParams",
+    "vertex": {
+      "unskinned": "MaterializeGlassUnskinnedVertex",
+      "skinned": "MaterializeGlassSkinnedVertex",
+      "depth": "MaterializeGlassUnskinnedDepthVertex"
+    },
+    "parameters": [
+      {
+        "name": "model_matrix",
+        "type": "mat4"
+      },
+      {
+        "name": "model_center",
+        "type": "vec3",
+        "default": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "glass_front",
+        "type": "float",
+        "default": 10.0
+      },
+      {
+        "name": "solid_front",
+        "type": "float",
+        "default": -10.0
+      },
+      {
+        "name": "band",
+        "type": "float",
+        "default": 0.35
+      },
+      {
+        "name": "fly_dir",
+        "type": "vec3",
+        "default": [
+          0.0,
+          -1.0,
+          0.0
+        ]
+      },
+      {
+        "name": "fly_distance",
+        "type": "float",
+        "default": 1.4
+      },
+      {
+        "name": "center_distance",
+        "type": "float",
+        "default": 0.0
+      },
+      {
+        "name": "normal_distance",
+        "type": "float",
+        "default": 0.0
+      },
+      {
+        "name": "jitter",
+        "type": "float",
+        "default": 0.15
+      },
+      {
+        "name": "fade_portion",
+        "type": "float",
+        "default": 0.64,
+        "hint": {
+          "kind": "range",
+          "min": 0.01,
+          "max": 1.0,
+          "step": 0.01
+        }
+      },
+      {
+        "name": "cool_span",
+        "type": "float",
+        "default": 0.33,
+        "hint": {
+          "kind": "range",
+          "min": 0.05,
+          "max": 4.0,
+          "step": 0.05
+        }
+      },
+      {
+        "name": "tumble",
+        "type": "float",
+        "default": 2.3,
+        "hint": {
+          "kind": "range",
+          "min": 0.0,
+          "max": 3.0,
+          "step": 0.01
+        }
+      },
+      {
+        "name": "time",
+        "type": "float",
+        "default": 0.0
+      },
+      {
+        "name": "glass_color",
+        "type": "vec4",
+        "default": [
+          0.5,
+          0.85,
+          1.0,
+          0.69
+        ],
+        "hint": {
+          "kind": "source_color"
+        }
+      },
+      {
+        "name": "glow_color",
+        "type": "vec3",
+        "default": [
+          1.0,
+          1.0,
+          0.6
+        ],
+        "hint": {
+          "kind": "source_color"
+        }
+      },
+      {
+        "name": "glow_strength",
+        "type": "float",
+        "default": 22.0,
+        "hint": {
+          "kind": "range",
+          "min": 0.0,
+          "max": 30.0,
+          "step": 0.1
+        }
+      },
+      {
+        "name": "noise_scale",
+        "type": "vec3",
+        "default": [
+          8.0,
+          8.0,
+          8.0
+        ]
+      },
+      {
+        "name": "noise_amp",
+        "type": "float",
+        "default": 0.0
+      }
+    ],
+    "samplers": []
+  },
+  "MaterializeShell": {
+    "name": "MaterializeShell",
+    "framework_varying_schema": 2,
+    "domain": "surface",
+    "shading_model": "lit",
+    "blending": "opaque",
+    "culling": "back",
+    "uniform_block": "MaterialParams",
+    "parameters": [
+      {
+        "name": "solid_front",
+        "type": "float",
+        "default": 10.0
+      },
+      {
+        "name": "seam_width",
+        "type": "float",
+        "default": 0.06
+      },
+      {
+        "name": "seam_color",
+        "type": "vec4",
+        "default": [
+          0.3,
+          0.9,
+          1.0,
+          1.0
+        ],
+        "hint": {
+          "kind": "source_color"
+        }
+      },
+      {
+        "name": "seam_strength",
+        "type": "float",
+        "default": 16.0,
+        "hint": {
+          "kind": "range",
+          "min": 0.0,
+          "max": 40.0,
+          "step": 0.1
+        }
+      },
+      {
+        "name": "noise_scale",
+        "type": "vec3",
+        "default": [
+          8.0,
+          8.0,
+          8.0
+        ]
+      },
+      {
+        "name": "noise_amp",
+        "type": "float",
+        "default": 0.0
+      },
+      {
+        "name": "base_color_factor",
+        "type": "vec4",
+        "default": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "metallic_factor",
+        "type": "float",
+        "default": 1.0,
+        "hint": {
+          "kind": "range",
+          "min": 0.0,
+          "max": 1.0,
+          "step": 0.01
+        }
+      },
+      {
+        "name": "roughness_factor",
+        "type": "float",
+        "default": 1.0,
+        "hint": {
+          "kind": "range",
+          "min": 0.0,
+          "max": 1.0,
+          "step": 0.01
+        }
+      },
+      {
+        "name": "emissive_factor",
+        "type": "vec3",
+        "default": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "normal_scale",
+        "type": "float",
+        "default": 1.0,
+        "hint": {
+          "kind": "range",
+          "min": 0.0,
+          "max": 2.0,
+          "step": 0.01
+        }
+      },
+      {
+        "name": "occlusion_strength",
+        "type": "float",
+        "default": 1.0,
+        "hint": {
+          "kind": "range",
+          "min": 0.0,
+          "max": 1.0,
+          "step": 0.01
+        }
+      }
+    ],
+    "samplers": [
+      {
+        "name": "base_color_texture",
+        "type": "sampler2D",
+        "hint": {
+          "kind": "default_white"
+        }
+      },
+      {
+        "name": "metallic_roughness_texture",
+        "type": "sampler2D",
+        "hint": {
+          "kind": "default_white"
+        }
+      },
+      {
+        "name": "normal_texture",
+        "type": "sampler2D",
+        "hint": {
+          "kind": "default_normal"
+        }
+      },
+      {
+        "name": "occlusion_texture",
+        "type": "sampler2D",
+        "hint": {
+          "kind": "default_white"
+        }
+      },
+      {
+        "name": "emissive_texture",
+        "type": "sampler2D",
+        "hint": {
+          "kind": "default_black"
+        }
+      }
+    ]
+  },
+  "MaterializeWireframe": {
+    "name": "MaterializeWireframe",
+    "framework_varying_schema": 2,
+    "domain": "surface",
+    "shading_model": "unlit",
+    "blending": "alpha",
+    "culling": "none",
+    "uniform_block": "MaterialParams",
+    "parameters": [
+      {
+        "name": "wire_front",
+        "type": "float",
+        "default": 10.0
+      },
+      {
+        "name": "solid_front",
+        "type": "float",
+        "default": -10.0
+      },
+      {
+        "name": "band",
+        "type": "float",
+        "default": 0.08
+      },
+      {
+        "name": "wire_color",
+        "type": "vec4",
+        "default": [
+          0.25,
+          0.85,
+          1.0,
+          0.85
+        ],
+        "hint": {
+          "kind": "source_color"
+        }
+      },
+      {
+        "name": "glow_strength",
+        "type": "float",
+        "default": 8.0,
+        "hint": {
+          "kind": "range",
+          "min": 0.0,
+          "max": 30.0,
+          "step": 0.1
+        }
+      },
+      {
+        "name": "noise_scale",
+        "type": "vec3",
+        "default": [
+          8.0,
+          8.0,
+          8.0
+        ]
+      },
+      {
+        "name": "noise_amp",
+        "type": "float",
+        "default": 0.0
+      }
+    ],
+    "samplers": []
+  }
+}
