@@ -23,6 +23,9 @@ void main(List<String> args) async {
       textures: ['assets/ground_grid.png'],
     );
     await buildMaterials(buildInput: input, buildOutput: output);
+    // Put engine shaders in this app's generated tree so a read-only pub
+    // cache still ships them with the web bundle.
+    await buildEngineAssets(buildInput: input, buildOutput: output);
     // flutter_scene:init:end
   });
 }

@@ -45,6 +45,16 @@ jobs:
             --base-href /${{ github.event.repository.name }}/
           # GitHub Pages/Jekyll skips underscore paths without this.
           touch build/web/.nojekyll
+          # flutter_scene_generated/.gitignore is "*" so generated files are not
+          # committed in source control. If those ignore files are left in the
+          # web output, `git add` on gh-pages drops the shader bundles and the
+          # app fails with "physical material shaders are missing".
+          find build/web -name .gitignore -delete
+          if ! find build/web -name '*.shaderbundle' | grep -q .; then
+            echo "No shader bundles in build/web; flutter_scene hooks did not ship." >&2
+            find build/web/assets -type f | sort
+            exit 1
+          fi
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
